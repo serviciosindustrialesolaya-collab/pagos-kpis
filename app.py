@@ -1,28 +1,9 @@
-# app.py
-# app.py
 import streamlit as st
-
-# --- Bootstrap: instala dependencias si faltan ---
-import importlib, subprocess, sys
-
-def ensure(pkg, ver=None):
-    try:
-        importlib.import_module(pkg)
-    except ModuleNotFoundError:
-        target = f"{pkg}=={ver}" if ver else pkg
-        subprocess.check_call([sys.executable, "-m", "pip", "install", target])
-        importlib.invalidate_caches()
-
-# Fuerza instalación si el entorno no las trae
-ensure("gspread", "6.1.3")
-ensure("gspread_dataframe", "3.3.0")
-ensure("google.oauth2")   # viene con google-auth
-ensure("pandas", "2.2.2")
-
 import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
 from gspread_dataframe import set_with_dataframe, get_as_dataframe
+
 
 
 st.set_page_config(page_title="KPIs de Pagos", layout="wide")
